@@ -1,0 +1,34 @@
+configfile: "workflow/config.yaml"
+
+
+rule all:
+    input:
+        "data/raw/all_v2.csv",
+        "data/raw/df_spb.csv",
+        "data/external/spb_subways.csv",
+        "data/interim/spb_house_with_subway.csv",
+
+
+rule subway_features:
+    input:
+        "data/raw/df_spb.csv",
+        "data/external/spb_subways.csv"
+    output:
+        "data/interim/spb_house_with_subway.csv"
+    shell:
+        "python3 -m src.features.subway_features {input[0]} {input[1]} {output}"
+
+
+rule get_subways:
+    output:
+        "data/external/spb_subways.csv",
+    shell:
+        "python3 -m src.data.get_subways {output}"
+
+
+rule make_raw:
+    output:
+        "data/raw/all_v2.csv",
+        "data/raw/df_spb.csv",
+    shell:
+        "python3 -m src.data.get_raw {output[0]} {output[1]} "
