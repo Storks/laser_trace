@@ -89,3 +89,6 @@ target/
 .mypy_cache/
 /notebooks/model/
 /data/raw/1400701D.E003_frames.rar
+/data/processed/test/
+/data/processed/train/
+/data/processed/validation/
