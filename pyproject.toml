@@ -10,6 +10,7 @@ snakemake = "^7.8.2"
 tensorflow = "2.8.0"
 numpy = "^1.22.4"
 matplotlib = "^3.5.2"
+boto3 = "^1.24.11"
 
 [tool.poetry.dev-dependencies]
 
