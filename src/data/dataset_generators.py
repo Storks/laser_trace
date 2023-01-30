@@ -73,7 +73,8 @@ def load_img_mask(image_path: str, mask_path: str) -> (tf.Tensor, tf.Tensor):
 
 def img_mask_generator(directory: str,
                        split='train',
-                       batch_size=1) -> tf.data.Dataset:
+                       batch_size=1,
+                       epochs = 1) -> tf.data.Dataset:
     """
     joint image and mask data generator
     :param directory:
@@ -84,12 +85,13 @@ def img_mask_generator(directory: str,
 
     image_list = data_list_dir(os.path.join(directory, 'img'))
     mask_list = data_list_dir(os.path.join(directory, 'mask'))
-
+    print('Num. of elements in dataset: {}'.format(len(image_list)))
     dataset = tf.data.Dataset.from_tensor_slices((image_list, mask_list))
     dataset = dataset.shuffle(8 * batch_size) if split == 'train' else dataset
     dataset = dataset.map(load_img_mask, num_parallel_calls=tf.data.AUTOTUNE)
     dataset = dataset.batch(batch_size, drop_remainder=True)
     dataset = dataset.prefetch(tf.data.AUTOTUNE)
+    dataset = dataset.repeat(epochs)
 
     return dataset
 
