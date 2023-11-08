@@ -5,22 +5,23 @@ description = ""
 authors = ["Dmitriy Cherezov <cherezov89@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+python = ">=3.9,<3.11"
 snakemake = "^7.8.2"
-tensorflow = "2.8.0"
 numpy = "^1.22.4"
 matplotlib = "^3.5.2"
 boto3 = "^1.24.11"
 python-dotenv = "^0.20.0"
-protobuf = "3.20.0"
+protobuf = "^3.20.0"
 autopep8 = "^1.6.0"
 pygit2 = "^1.9.2"
 mlflow = "^1.26.1"
 pydot = "^1.4.2"
 graphviz = "^0.20"
+jupyterlab = "^4.0.7"
+tensorflow = {extras = ["and-cuda"], version = "^2.14.0"}
 
 [tool.poetry.dev-dependencies]
-jupyter = "^1.0.0"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
